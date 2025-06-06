@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from configs import ai_agent_config
+from routes import register_routes
 
 
 def create_app():
-
     app = FastAPI(
         title=ai_agent_config.APPLICATION_NAME,
         description="A context-aware Git assistant using LangGraph and FastAPI",
@@ -21,15 +21,9 @@ def create_app():
         allow_headers=["*"],
     )
 
-    @app.get("/ping", tags=["Health"])
-    async def ping() -> dict[str, str]:
-        """
-        Health check endpoint.
-        
-        Returns:
-            dict: A simple response indicating the service is running
-        """
-        return {"message": "pong"}
+    # Register all routes
+    register_routes(app)
+    
     return app
 
 
