@@ -1,11 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from config.settings import get_settings
+from configs import ai_agent_config
 
-settings = get_settings()
 
 app = FastAPI(
-    title=settings.PROJECT_NAME,
+    title=ai_agent_config.APPLICATION_NAME,
     description="A context-aware Git assistant using LangGraph and FastAPI",
     version="0.1.0",
     docs_url="/docs",
@@ -33,4 +32,4 @@ async def ping() -> dict[str, str]:
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host=settings.HOST, port=settings.PORT) 
+    uvicorn.run(app, host=ai_agent_config.BACKEND_APP_BIND_ADDRESS, port=ai_agent_config.BACKEND_APP_PORT) 
