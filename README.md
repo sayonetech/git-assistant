@@ -69,4 +69,4 @@ poetry run isort .
 ### Running Tests
 ```bash
 poetry run pytest
-``` 
+```
